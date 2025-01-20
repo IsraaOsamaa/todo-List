@@ -1,0 +1,147 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f9;
+}
+
+nav.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #6200ea;
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+nav.navbar h1 {
+  margin: 0;
+}
+
+.auth-buttons button {
+  background-color: #fff;
+  color: #6200ea;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.auth-buttons button:hover {
+  background-color: #e0d7fa;
+}
+#alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  position: fixed;
+  bottom: 5px;
+  right: 0;
+  padding: 0px 10px;
+  font-size: 20px;
+  border-radius: 6px;
+  background-color: #d7d7d7;
+}
+#alert i {
+  padding: 10px;
+  color: #958484;
+  border-radius: 6px;
+  width: 10px;
+  height: 10px;
+}
+
+#alert i:hover {
+  color: black;
+}
+/* todo */
+.hidden {
+  display: none;
+}
+.nonvisible {
+  visibility: hidden;
+}
+.note {
+  background-color: #d7d7d7;
+  padding: 7px;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 20%;
+  border-radius: 6px;
+  color: red;
+}
+#authForm input {
+  padding: 5px;
+  font-size: 20px;
+  display: block;
+  margin: 10px 0px;
+  border-radius: 6px;
+  border: 2px solid black;
+}
+#authForm button {
+  padding: 7px;
+  font-size: 20px;
+  display: block;
+  margin: 10px 0px;
+  border-radius: 6px;
+  border: none;
+  background-color: #6200ea;
+  color: white;
+}
+main {
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-group button {
+  background-color: #6200ea;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 0.5rem;
+}
+
+.input-group button:hover {
+  background-color: #3700b3;
+}
+
+ul#todoList {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul#todoList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+ul#todoList li img {
+  width: 30px;
+  margin-right: 3px;
+  cursor: pointer;
+}
