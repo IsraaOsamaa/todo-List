@@ -1,0 +1,47 @@
+--------------------------------------------------------
+--  File created - Thursday-January-23-2025   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table TODOS
+--------------------------------------------------------
+
+  CREATE TABLE "TODOPROJECT"."TODOS" 
+   (	"ID" NUMBER, 
+	"TEXT" VARCHAR2(255 BYTE), 
+	"USER_ID" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+REM INSERTING into TODOPROJECT.TODOS
+SET DEFINE OFF;
+Insert into TODOPROJECT.TODOS (ID,TEXT,USER_ID) values (11,'test 20',25);
+Insert into TODOPROJECT.TODOS (ID,TEXT,USER_ID) values (4,'do something',25);
+Insert into TODOPROJECT.TODOS (ID,TEXT,USER_ID) values (10,'ssaa',25);
+--------------------------------------------------------
+--  DDL for Index SYS_C0011589
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TODOPROJECT"."SYS_C0011589" ON "TODOPROJECT"."TODOS" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  Constraints for Table TODOS
+--------------------------------------------------------
+
+  ALTER TABLE "TODOPROJECT"."TODOS" MODIFY ("TEXT" NOT NULL ENABLE);
+ 
+  ALTER TABLE "TODOPROJECT"."TODOS" ADD PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table TODOS
+--------------------------------------------------------
+
+  ALTER TABLE "TODOPROJECT"."TODOS" ADD FOREIGN KEY ("USER_ID")
+	  REFERENCES "TODOPROJECT"."USERS" ("ID") ENABLE;
