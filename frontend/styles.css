@@ -6,7 +6,8 @@ body {
   box-sizing: border-box;
   background-color: #f4f4f9;
 }
-
+h2 {
+}
 nav.navbar {
   display: flex;
   justify-content: space-between;
