@@ -26,7 +26,7 @@ jobs:
       # الخطوة 3: تثبيت التبعيات
       - name: Install dependencies
         run: npm install
-
+        working-directory: ./backend
       # الخطوة 4: تشغيل الاختبارات
       - name: Run tests
         run: npm test
