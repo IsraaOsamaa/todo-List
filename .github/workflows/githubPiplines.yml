@@ -3,14 +3,14 @@ name: CI/CD Pipeline for To-Do List App
 # تشغيل الـ workflow عند push أو pull request إلى الفرع main
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 # تعريف المهام (Jobs)
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest  # نظام التشغيل الذي سيتم تشغيل الـ workflow عليه
+    runs-on: ubuntu-latest # نظام التشغيل الذي سيتم تشغيل الـ workflow عليه
 
     steps:
       # الخطوة 1: تحميل الكود من المستودع
@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'  # تحديد إصدار Node.js
+          node-version: "18" # تحديد إصدار Node.js
 
       # الخطوة 3: تثبيت التبعيات
       - name: Install dependencies
@@ -45,7 +45,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build-and-test  # تشغيل هذه المهمة فقط بعد نجاح build-and-test
+    needs: build-and-test # تشغيل هذه المهمة فقط بعد نجاح build-and-test
 
     steps:
       # الخطوة 1: تحميل الكود من المستودع
