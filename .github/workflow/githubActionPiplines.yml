@@ -1,0 +1,73 @@
+name: CI/CD Pipeline for To-Do List App
+
+# تشغيل الـ workflow عند push أو pull request إلى الفرع main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# تعريف المهام (Jobs)
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest  # نظام التشغيل الذي سيتم تشغيل الـ workflow عليه
+
+    steps:
+      # الخطوة 1: تحميل الكود من المستودع
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # الخطوة 2: إعداد Node.js (إذا كنت تستخدم Express.js)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # تحديد إصدار Node.js
+
+      # الخطوة 3: تثبيت التبعيات
+      - name: Install dependencies
+        run: npm install
+
+      # الخطوة 4: تشغيل الاختبارات
+      - name: Run tests
+        run: npm test
+
+      # الخطوة 5: التحقق من اتصال قاعدة البيانات Oracle
+      - name: Test Oracle DB connection
+        env:
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
+        run: |
+          # هنا يمكنك إضافة أمر لاختبار الاتصال بقاعدة البيانات
+          # مثال: استخدام أداة مثل `sqlplus` أو `node-oracledb`
+          echo "Testing Oracle DB connection..."
+          # مثال: sqlplus $DB_USER/$DB_PASSWORD@$DB_CONNECTION_STRING @test_connection.sql
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test  # تشغيل هذه المهمة فقط بعد نجاح build-and-test
+
+    steps:
+      # الخطوة 1: تحميل الكود من المستودع
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # الخطوة 2: نشر التطبيق على Heroku (مثال)
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+
+      # الخطوة 3: تحديث قاعدة البيانات Oracle
+      - name: Update Oracle DB
+        env:
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
+        run: |
+          # هنا يمكنك إضافة أوامر لتحديث قاعدة البيانات
+          # مثال: تشغيل ملف SQL لتحديث الجداول
+          echo "Updating Oracle DB..."
+          # مثال: sqlplus $DB_USER/$DB_PASSWORD@$DB_CONNECTION_STRING @update_db.sql
